@@ -26,7 +26,7 @@ Suggestions:
 
 
 ### Later, think about the following problems:
-  - should we return different errors if username is not known or password is wrong? ➔ Do not leak valid usernames!
+  - we are leaking valid usernames ➔ return a generic error if username does not exist or password is wrong
   - [password *hashing*](https://en.wikipedia.org/wiki/Cryptographic_hash_function) ➔ do not store passwords in clear text (database could be stolen, admins are nosy). Solution: Do not store passwords at all but only their hashes (database could be stolen)
   - [password *salting*](https://en.wikipedia.org/wiki/Salt_&#40;cryptography&#41;) ➔ different users with same passwords should not have same hash ⟶ cracking one does not crack all: mitigates dictionary attacks, see below
 
