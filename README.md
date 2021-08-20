@@ -7,6 +7,7 @@ Start creating a script called `auth.py`
   - run the script
   - the script asks for username and password
   - if the user is known and password is correct ➔ print "Successfully authenticated!" 
+  - if the user is known and password is wrong ➔ print "Wrong password!" 
   - if the user is not known ➔ ask to add the user to the password database
   - if a user has been added ➔ store the updated database to disk
 
