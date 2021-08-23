@@ -41,9 +41,10 @@ def read_pwdb():
     return pwdb
 
 
-pwdb = read_pwdb()
-user, password = get_credentials()
-authenticate(user, password, pwdb)
-write_pwdb(pwdb)
-print(pwdb)
+if __name__ == "__main__":
+    pwdb = read_pwdb()
+    user, password = get_credentials()
+    authenticate(user, password, pwdb)
+    write_pwdb(pwdb)
+    print(pwdb)
 
