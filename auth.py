@@ -17,5 +17,8 @@ def authenticate(user, password, pwdb):
             pass
     return
 
-print(get_credentials())
+pwdb = {}
+user, password = get_credentials()
+authenticate(user, password, pwdb)
+print(pwdb)
 
