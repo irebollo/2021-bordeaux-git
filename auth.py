@@ -5,7 +5,8 @@ PWDB_FILENAME = 'pwdb.json'
 def get_credentials():
     username = input('Type the username: ')
     password = input('Type the password: ')
-    return username, password
+    hashed_password = pwhash(password)
+    return username, hashed_password
 
 def add_user(user, password, pwdb):
     pwdb[user] = password
@@ -25,6 +26,13 @@ def authenticate(user, password, pwdb):
             add_user(user, password, pwdb)
 
     return
+
+
+def pwhash(password):
+    hash_ = 0
+    for char in password:
+        hash_ += ord(char)
+    return hash_
 
 
 def write_pwdb(pwdb):
