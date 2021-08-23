@@ -5,14 +5,14 @@ PWDB_FILENAME = 'pwdb.json'
 def get_credentials():
     username = input('Type the username: ')
     password = input('Type the password: ')
-    return username, password
+    hashed_password = pwhash(password)
+    return username, hashed_password
 
 def add_user(user, password, pwdb):
-    add = input('Add user to the db? ')
-    if add == 'y':
-        pwdb[user] = password
-        write_pwdb(pwdb)
+    pwdb[user] = password
+    write_pwdb(pwdb)
     return
+
 
 def authenticate(user, password, pwdb):
     if user in pwdb:
@@ -21,8 +21,19 @@ def authenticate(user, password, pwdb):
         else:
             print('Wrong password!!')
     else:
-        add_user(user, password, pwdb)
+        answer = input('Add user to the db? ')
+        if answer == 'y':
+            add_user(user, password, pwdb)
+
     return
+
+
+def pwhash(password):
+    hash_ = 0
+    for idx, char in enumerate(password):
+        hash_ += (idx+1)*ord(char)
+    return hash_
+
 
 def write_pwdb(pwdb):
      with open(PWDB_FILENAME, 'w') as fh:
@@ -38,9 +49,10 @@ def read_pwdb():
     return pwdb
 
 
-pwdb = read_pwdb()
-user, password = get_credentials()
-authenticate(user, password, pwdb)
-write_pwdb(pwdb)
-print(pwdb)
+if __name__ == "__main__":
+    pwdb = read_pwdb()
+    user, password = get_credentials()
+    authenticate(user, password, pwdb)
+    write_pwdb(pwdb)
+    print(pwdb)
 
