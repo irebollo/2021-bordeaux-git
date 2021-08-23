@@ -26,7 +26,18 @@ def write_pwdb(pwdb):
         json.dump(pwdb, fh)
 
 def read_pwdb():
+    if os.path.exists(PWDB_FILENAME):
+        with open(PWDB_FILENAME, 'r') as fh:
+            pwdb = json.load(fh)
+    else:
+        pwdb = {}
+        write_pwdb(pwdb)
+    return pwdb
+
+
+pwdb = read_pwdb()
 user, password = get_credentials()
 authenticate(user, password, pwdb)
+write_pwdb(pwdb)
 print(pwdb)
 
