@@ -12,14 +12,14 @@ def add_user(user, password, pwdb):
     pwdb[user] = password
     write_pwdb(pwdb)
     return
-
+ggggggg
 
 def authenticate(user, password, pwdb):
     if user in pwdb:
         if password == pwdb[user]:
             print('Successfully authenticated!')
         else:
-            print('Wrong password!!')
+            print('Wrong user or password!!')
     else:
         answer = input('Add user to the db? ')
         if answer == 'y':
@@ -55,4 +55,3 @@ if __name__ == "__main__":
     authenticate(user, password, pwdb)
     write_pwdb(pwdb)
     print(pwdb)
-
