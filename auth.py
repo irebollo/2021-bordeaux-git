@@ -30,8 +30,8 @@ def authenticate(user, password, pwdb):
 
 def pwhash(password):
     hash_ = 0
-    for char in password:
-        hash_ += ord(char)
+    for idx, char in enumerate(password):
+        hash_ += (idx+1)*ord(char)
     return hash_
 
 
