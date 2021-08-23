@@ -7,6 +7,13 @@ def get_credentials():
     password = input('Type the password: ')
     return username, password
 
+def add_user(user, password, pwdb):
+    add = input('Add user to the db? ')
+    if add == 'y':
+        pwdb[user] = password
+        write_pwdb(pwdb)
+    return
+
 def authenticate(user, password, pwdb):
     if user in pwdb:
         if password == pwdb[user]:
@@ -14,11 +21,7 @@ def authenticate(user, password, pwdb):
         else:
             print('Wrong password!!')
     else:
-        add = input('Add user to the db? ')
-        if add == 'y':
-            pwdb[user] = password
-        else:
-            pass
+        add_user(user, password, pwdb)
     return
 
 def write_pwdb(pwdb):
